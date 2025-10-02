@@ -1,14 +1,39 @@
 
+
 import { useState, useEffect, useRef, useContext } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 import "@tensorflow/tfjs";
 import { CircularProgress, Box, Button, Typography } from "@mui/material";
 
-import { speakResults } from "./ttsService";
-import { LanguageContext } from "./App";
+import { speakResults } from "../../components/cervices/ttsService.js";
+import { LanguageContext } from '../../components/contexts/LanguageContext.js';
+
+const texts = {
+  'en-US': {
+    title: 'AI-Classification',
+    loading: 'Loading MobileNet Model...',
+    upload: 'Upload Image',
+    classify: 'Classify',
+    clear: 'Clear',
+    results: 'Classification Results',
+    mostLikely: '(Most Likely)',
+  },
+  'uk-UA': {
+    title: 'ШІ-Класифікація Зображень',
+    loading: 'Завантаження моделі MobileNet...',
+    upload: 'Завантажити Фото',
+    classify: 'Класифікувати',
+    clear: 'Очистити',
+    results: 'Результати Класифікації',
+    mostLikely: '(Найбільш Ймовірно)',
+  }
+};
+
 
 function ReaderImage() {
   const { language } = useContext(LanguageContext);
+  
+  const t = texts[language] || texts['en-US']; 
 
   const [model, setModel] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -44,6 +69,17 @@ function ReaderImage() {
   const triggerUpload = () => {
     fileInputRef.current.click();
   };
+  
+  const handleClear = () => {
+    if (imageURL) {
+      URL.revokeObjectURL(imageURL);
+    }
+    setImageURL("");
+    setResults([]);
+    if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+    }
+  };
 
   const classifyImage = async () => {
     if (model && imageRef.current) {
@@ -51,7 +87,7 @@ function ReaderImage() {
       setResults(predictions);
 
       if (predictions.length > 0) {
-        speakResults(predictions, language);
+        speakResults(predictions);
       }
     }
   };
@@ -59,16 +95,16 @@ function ReaderImage() {
   if (isLoading) {
     return (
       <Box sx={{ textAlign: "center", mt: 5 }}>
-        <Typography variant="h5">Loading MobileNet Model...</Typography>
+        <Typography variant="h5">{t.loading}</Typography>
         <CircularProgress sx={{ mt: 2 }} />
       </Box>
     );
   }
 
   return (
-    <Box sx={{ maxWidth: 600, mx: "auto", textAlign: "center", mt: 4 }}>
+    <Box sx={{  mx: "auto", textAlign: "center", mt: 4 }}>
       <Typography variant="h4" gutterBottom>
-        Image Classification
+        {t.title}
       </Typography>
 
       <input
@@ -79,19 +115,22 @@ function ReaderImage() {
         onChange={handleUpload}
       />
 
-      {/* CONTROL BUTTONS */}
       <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mb: 2 }}>
         <Button variant="contained" onClick={triggerUpload}>
-          Upload Image
+          {t.upload}
         </Button>
         {imageURL && (
           <Button variant="outlined" onClick={classifyImage}>
-            Classify
+            {t.classify}
+          </Button>
+        )}
+        {imageURL && (
+          <Button variant="outlined" color="error" onClick={handleClear}>
+            {t.clear}
           </Button>
         )}
       </Box>
 
-      {/* IMAGE DISPLAY */}
       {imageURL && (
         <Box sx={{ mb: 3 }}>
           <img
@@ -99,7 +138,7 @@ function ReaderImage() {
             alt="Image for classification"
             ref={imageRef}
             crossOrigin="anonymous"
-            style={{ maxWidth: "100%", borderRadius: "8px" }}
+            style={{ maxWidth: "100%", borderRadius: "8px"}}
           />
         </Box>
       )}
@@ -107,8 +146,9 @@ function ReaderImage() {
       {/* CLASSIFICATION RESULTS */}
       {results.length > 0 && (
         <Box>
+          {/* ✅ ВИКОРИСТАННЯ ПЕРЕКЛАДУ */}
           <Typography variant="h5" gutterBottom>
-            Classification Results
+            {t.results}
           </Typography>
           {results.map((res, index) => (
             <Box key={res.className} sx={{ mb: 1 }}>
@@ -116,7 +156,7 @@ function ReaderImage() {
                 <strong>{res.className}</strong> —{" "}
                 {(res.probability * 100).toFixed(2)}%
                 {index === 0 && (
-                  <span style={{ color: "#1976d2" }}> (Most Likely)</span>
+                  <span style={{ color: "#1976d2" }}> {t.mostLikely}</span>
                 )}
               </Typography>
             </Box>

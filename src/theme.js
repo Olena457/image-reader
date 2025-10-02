@@ -1,8 +1,5 @@
 import { createTheme } from "@mui/material/styles";
 
-
-
-// Function to create theme (light/dark)
 export const getAppTheme = (mode) =>
   createTheme({
     palette: {
@@ -17,8 +14,8 @@ export const getAppTheme = (mode) =>
       // Dark Mode specific colors
       ...(mode === "dark" && {
         background: {
-          default: "#0a0a0a", // Deeper dark background
-          paper: "#1e1e1e", // Dark background for cards and AppBar
+          default: "#0a0a0a", //  background
+          paper: "#1e1e1e", //cards and AppBar
         },
         text: {
           primary: "#ffffff",
@@ -41,7 +38,6 @@ export const getAppTheme = (mode) =>
       fontFamily: ['"Roboto"', "sans-serif"].join(","),
     },
 
-    gradients: {
-      headerFooter: #1f1bf4ff,
-    },
+    
+    headerFooterBg: '#1f1bf4ff',
   });

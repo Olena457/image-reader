@@ -1,8 +1,10 @@
-import React, { useContext } from 'react';
+import  { useContext } from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Box, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-import { ColorModeContext, LanguageContext } from './App'; 
+import { ColorModeContext } from '../../components/contexts/ColorModeContext.js';
+import { LanguageContext } from '../../components/contexts/LanguageContext.js';
+
 
 export default function Header() {
   const theme = useTheme();

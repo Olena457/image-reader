@@ -1,32 +1,27 @@
+import  { useState, useMemo } from 'react';
+import { ThemeProvider, Container, CssBaseline,Box } from '@mui/material';
+import SectionContainer from './components/SectionContainer/SectionContainer.jsx';
+import { ColorModeContext } from './components/contexts/ColorModeContext.js';
+import { LanguageContext } from './components/contexts/LanguageContext.js';
 
-import React, { useState, useMemo } from "react";
-import { ThemeProvider, Container, CssBaseline } from "@mui/material";
-import { getAppTheme } from "./theme";
-import Header from "./Header";
-import ReaderImage from "./ReaderImage";
+import { getAppTheme } from './theme.js';
+import Header from './components/Header/Header.jsx';
+import ReaderImage from './components/ReaderImage/ReaderImage.jsx';
 
-export const ColorModeContext = React.createContext({
-  toggleColorMode: () => {},
-});
-
-export const LanguageContext = React.createContext({
-  language: "en-US",
-  setLanguage: (lang) => {},
-});
 
 function App() {
   const [mode, setMode] = useState(() => {
-    return localStorage.getItem("themeMode") || "light";
+    return localStorage.getItem('themeMode') || 'light';
   });
 
-  const [language, setLanguage] = useState("en-US");
+  const [language, setLanguage] = useState('en-US');
 
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode((prevMode) => {
-          const newMode = prevMode === "light" ? "dark" : "light";
-          localStorage.setItem("themeMode", newMode);
+        setMode(prevMode => {
+          const newMode = prevMode === 'light' ? 'dark' : 'light';
+          localStorage.setItem('themeMode', newMode);
           return newMode;
         });
       },
@@ -37,7 +32,7 @@ function App() {
   const languageSettings = useMemo(
     () => ({
       language,
-      handleLanguageChange: (event, newLanguage) => {
+      handleLanguageChange: (_, newLanguage) => {
         if (newLanguage !== null) {
           setLanguage(newLanguage);
         }
@@ -45,7 +40,6 @@ function App() {
     }),
     [language]
   );
-
   const theme = useMemo(() => getAppTheme(mode), [mode]);
 
   return (
@@ -53,16 +47,26 @@ function App() {
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
+            <SectionContainer py={0} maxWidth="100%" mx="auto">
+          
+            <Header />
+          </SectionContainer>
 
-          <Header />
-
-          <Container sx={{ mt: 4, mb: 4 }} maxWidth="lg">
-            <ReaderImage />
-          </Container>
+          {/* <Box
+            sx={{
+              display: 'flex',
+             
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          > */}
+            <Container >
+              <ReaderImage />
+            </Container>
         </ThemeProvider>
       </ColorModeContext.Provider>
     </LanguageContext.Provider>
   );
 }
-
 export default App;
