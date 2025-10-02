@@ -1,23 +1,19 @@
-import { useState, useEffect, useRef } from "react";
+
+import { useState, useEffect, useRef, useContext } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 import "@tensorflow/tfjs";
-import {
-  CircularProgress,
-  Box,
-  Button,
-  Typography,
-  ToggleButton,
-  ToggleButtonGroup,
-} from "@mui/material";
+import { CircularProgress, Box, Button, Typography } from "@mui/material";
 
 import { speakResults } from "./ttsService";
+import { LanguageContext } from "./App";
 
 function ReaderImage() {
+  const { language } = useContext(LanguageContext);
+
   const [model, setModel] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [imageURL, setImageURL] = useState("");
   const [results, setResults] = useState([]);
-  const [language, setLanguage] = useState("en-US");
 
   const imageRef = useRef();
   const fileInputRef = useRef();
@@ -49,12 +45,6 @@ function ReaderImage() {
     fileInputRef.current.click();
   };
 
-  const handleLanguageChange = (event, newLanguage) => {
-    if (newLanguage !== null) {
-      setLanguage(newLanguage);
-    }
-  };
-
   const classifyImage = async () => {
     if (model && imageRef.current) {
       const predictions = await model.classify(imageRef.current);
@@ -80,22 +70,6 @@ function ReaderImage() {
       <Typography variant="h4" gutterBottom>
         Image Classification
       </Typography>
-
-      {/* LANGUAGE SELECTION */}
-      <Box sx={{ mb: 2 }}>
-        <Typography variant="subtitle1" gutterBottom>
-          Audio Output Language:
-        </Typography>
-        <ToggleButtonGroup
-          value={language}
-          exclusive
-          onChange={handleLanguageChange}
-          size="small"
-        >
-          <ToggleButton value="en-US">English</ToggleButton>
-          <ToggleButton value="uk-UA">Українська</ToggleButton>
-        </ToggleButtonGroup>
-      </Box>
 
       <input
         type="file"
