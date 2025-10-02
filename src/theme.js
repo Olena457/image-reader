@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material/styles";
-import { deepOrange, teal } from "@mui/material/colors";
 
 
 
@@ -9,10 +8,10 @@ export const getAppTheme = (mode) =>
     palette: {
       mode,
       primary: {
-        main: mode === "light" ? "#08191fff" : teal[300], // Brighter teal for dark mode
+        main: mode === "light" ? "#08191fff" : "#327266ff", // Brighter teal for dark mode
       },
       secondary: {
-        main: mode === "light" ? "#2e9ab5ff" : deepOrange[500],
+        main: mode === "light" ? "#2e9ab5ff" : "#885800ff",
       },
 
       // Dark Mode specific colors
