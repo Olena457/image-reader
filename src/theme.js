@@ -1,17 +1,7 @@
 import { createTheme } from "@mui/material/styles";
 import { deepOrange, teal } from "@mui/material/colors";
 
-const GRADIENT = `linear-gradient(
-  75deg,
-  #4a93ff,
-  #00aef6,
-  #00c3e5,
-  #00d7d8,
-  #00ebc3,
-  #28ff90,
-  #b4ff72,
-  #f9ff28
-)`;
+
 
 // Function to create theme (light/dark)
 export const getAppTheme = (mode) =>
@@ -53,6 +43,6 @@ export const getAppTheme = (mode) =>
     },
 
     gradients: {
-      headerFooter: GRADIENT,
+      headerFooter: #1f1bf4ff,
     },
   });
