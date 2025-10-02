@@ -1,43 +1,42 @@
 import { createTheme } from "@mui/material/styles";
 
-export const getAppTheme = (mode) =>
+export const getAppTheme = mode =>
   createTheme({
     palette: {
       mode,
       primary: {
-        main: mode === "light" ? "#08191fff" : "#327266ff", // Brighter teal for dark mode
+        // main: mode === 'light' ? '#08191fff' : '#FFC300',
+        main: mode === 'light' ? '#c94ae9ff' : '#FFC300',
       },
       secondary: {
-        main: mode === "light" ? "#2e9ab5ff" : "#885800ff",
+        main: mode === 'light' ? '#d99312ff' : '#2189a3ff',
       },
 
-      // Dark Mode specific colors
-      ...(mode === "dark" && {
+      ...(mode === 'dark' && {
         background: {
-          default: "#0a0a0a", //  background
-          paper: "#1e1e1e", //cards and AppBar
+          default: '#0a0a0a', //  background
+          paper: '#1e1e1e',
         },
         text: {
-          primary: "#ffffff",
-          secondary: "#bdbdbd",
+          primary: '#ffffff',
+          secondary: '#bdbdbd',
         },
       }),
-      // Light Mode specific colors
-      ...(mode === "light" && {
+      // Light Mode
+      ...(mode === 'light' && {
         background: {
-          default: "#f5f5f5", // Very light, neutral background
-          paper: "#ffffff",
+          default: '#f5f5f5',
+          paper: '#ffffff',
         },
         text: {
-          primary: "#0a0a0a",
-          secondary: "#4d535b",
+          primary: '#0a0a0a',
+          secondary: '#4d535b',
         },
       }),
     },
     typography: {
-      fontFamily: ['"Roboto"', "sans-serif"].join(","),
+      fontFamily: ['"Roboto"', 'sans-serif'].join(','),
     },
 
-    
-    headerFooterBg: '#1f1bf4ff',
+    headerFooterBg: '#196072ff',
   });

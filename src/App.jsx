@@ -48,19 +48,8 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
             <SectionContainer py={0} maxWidth="100%" mx="auto">
-          
             <Header />
           </SectionContainer>
-
-          {/* <Box
-            sx={{
-              display: 'flex',
-             
-              width: '100%',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          > */}
             <Container >
               <ReaderImage />
             </Container>

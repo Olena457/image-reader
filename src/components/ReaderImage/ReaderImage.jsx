@@ -19,7 +19,7 @@ const texts = {
     mostLikely: '(Most Likely)',
   },
   'uk-UA': {
-    title: 'ШІ-Класифікація Зображень',
+    title: 'ШІ-Класифікація',
     loading: 'Завантаження моделі MobileNet...',
     upload: 'Завантажити Фото',
     classify: 'Класифікувати',
@@ -102,7 +102,7 @@ function ReaderImage() {
   }
 
   return (
-    <Box sx={{  mx: "auto", textAlign: "center", mt: 4 }}>
+    <Box sx={{  mx: "auto", textAlign: "center", mt: 2 }}>
       <Typography variant="h4" gutterBottom>
         {t.title}
       </Typography>
@@ -146,7 +146,6 @@ function ReaderImage() {
       {/* CLASSIFICATION RESULTS */}
       {results.length > 0 && (
         <Box>
-          {/* ✅ ВИКОРИСТАННЯ ПЕРЕКЛАДУ */}
           <Typography variant="h5" gutterBottom>
             {t.results}
           </Typography>

@@ -4,6 +4,7 @@ import { useTheme } from '@mui/material/styles';
 
 import { ColorModeContext } from '../../components/contexts/ColorModeContext.js';
 import { LanguageContext } from '../../components/contexts/LanguageContext.js';
+import logoImage from '../../assets/logo.svg'
 
 
 export default function Header() {
@@ -14,34 +15,77 @@ export default function Header() {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{
+            flexGrow: 1,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1,
+            fontSize: {
+              xs: '16px',
+              sm: '20px',
+            },
+          }}
+        >
           AI-Clasification
+          <Box
+            component="img"
+            src={logoImage}
+            alt="AI Icon"
+            sx={{
+              
+              width: 'auto',
+              ml: 0.5,
+              height: {
+                xs: '24px', 
+                sm: '34px', 
+              },
+            }}
+          />
         </Typography>
-        
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <ToggleButtonGroup
-              value={language}
-              exclusive
-              onChange={handleLanguageChange}
-              size="small"
-              color="secondary"
-              sx={{ bgcolor: 'background.default' }} 
-            >
-              <ToggleButton value="en-US" aria-label="English">EN</ToggleButton>
-              <ToggleButton value="uk-UA" aria-label="Ukrainian">UA</ToggleButton>
-            </ToggleButtonGroup>
-            
-            <IconButton 
-              onClick={colorMode.toggleColorMode} 
-              color="inherit"
-              aria-label="Toggle light/dark theme"
-            >
-              {theme.palette.mode === 'dark' 
-                ? <Typography component="span" sx={{ fontSize: 24 }}>☀️</Typography> 
-                : <Typography component="span" sx={{ fontSize: 24 }}>🌙</Typography>}
-            </IconButton>
+          <ToggleButtonGroup
+            value={language}
+            exclusive
+            onChange={handleLanguageChange}
+            size="small"
+            color="secondary"
+            sx={{ bgcolor: 'background.default' }}
+          >
+            <ToggleButton value="en-US" aria-label="English">
+              EN
+            </ToggleButton>
+            <ToggleButton value="uk-UA" aria-label="Ukrainian">
+              UA
+            </ToggleButton>
+          </ToggleButtonGroup>
+
+          <IconButton
+            onClick={colorMode.toggleColorMode}
+            aria-label="Toggle light/dark theme"
+            sx={{
+              boxShadow: 'none',
+              outline: 'none',
+              '&:hover, &:focus, &:active': {
+                border: '1px solid #de98efff',
+                boxShadow: '0 0 10px 0  #ae3ccbff',
+                outline: 'none',
+              },
+            }}
+          >
+            {theme.palette.mode === 'dark' ? (
+              <Typography component="span" sx={{ fontSize: 24 }}>
+                ☀️
+              </Typography>
+            ) : (
+              <Typography component="span" sx={{ fontSize: 24 }}>
+                🌙
+              </Typography>
+            )}
+          </IconButton>
         </Box>
-        
       </Toolbar>
     </AppBar>
   );
