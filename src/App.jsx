@@ -1,10 +1,10 @@
 import  { useState, useMemo } from 'react';
-import { ThemeProvider, Container, CssBaseline,Box } from '@mui/material';
-import SectionContainer from './components/SectionContainer/SectionContainer.jsx';
 import { ColorModeContext } from './components/contexts/ColorModeContext.js';
 import { LanguageContext } from './components/contexts/LanguageContext.js';
-
 import { getAppTheme } from './theme.js';
+import SectionContainer from './components/SectionContainer/SectionContainer.jsx';
+import { ThemeProvider, Container, CssBaseline } from '@mui/material';
+
 import Header from './components/Header/Header.jsx';
 import ReaderImage from './components/ReaderImage/ReaderImage.jsx';
 

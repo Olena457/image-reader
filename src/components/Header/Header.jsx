@@ -1,9 +1,9 @@
 import  { useContext } from 'react';
-import { AppBar, Toolbar, Typography, IconButton, Box, ToggleButton, ToggleButtonGroup } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-
 import { ColorModeContext } from '../../components/contexts/ColorModeContext.js';
 import { LanguageContext } from '../../components/contexts/LanguageContext.js';
+import { useTheme } from '@mui/material/styles';
+import { AppBar, Toolbar, Typography, IconButton, Box, ToggleButton, ToggleButtonGroup } from '@mui/material';
+
 import logoImage from '../../assets/logo.svg'
 
 
@@ -23,6 +23,7 @@ export default function Header() {
             display: 'flex',
             alignItems: 'center',
             gap: 1,
+            color:'#ffff',
             fontSize: {
               xs: '16px',
               sm: '20px',
@@ -35,6 +36,7 @@ export default function Header() {
             src={logoImage}
             alt="AI Icon"
             sx={{
+              fill: 'currentColor',
               width: 'auto',
               ml: 0.5,
               height: {
