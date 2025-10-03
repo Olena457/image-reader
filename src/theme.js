@@ -5,11 +5,11 @@ export const getAppTheme = mode =>
     palette: {
       mode,
       primary: {
-        // main: mode === 'light' ? '#08191fff' : '#FFC300',
-        main: mode === 'light' ? '#c94ae9ff' : '#FFC300',
+        // main: mode === 'light' ? '#46bc00' : '#FFC300',
+        main: mode === 'light' ? '#399d00' : '#FFC300',
       },
       secondary: {
-        main: mode === 'light' ? '#d99312ff' : '#2189a3ff',
+        main: mode === 'light' ? '#d99312ff' : '#196072ff',
       },
 
       ...(mode === 'dark' && {

@@ -35,12 +35,11 @@ export default function Header() {
             src={logoImage}
             alt="AI Icon"
             sx={{
-              
               width: 'auto',
               ml: 0.5,
               height: {
-                xs: '24px', 
-                sm: '34px', 
+                xs: '24px',
+                sm: '34px',
               },
             }}
           />
@@ -69,8 +68,8 @@ export default function Header() {
               boxShadow: 'none',
               outline: 'none',
               '&:hover, &:focus, &:active': {
-                border: '1px solid #de98efff',
-                boxShadow: '0 0 10px 0  #ae3ccbff',
+                border: '1px solid #FFC300',
+                boxShadow: '0 0 10px 0  #fdd03bff',
                 outline: 'none',
               },
             }}
