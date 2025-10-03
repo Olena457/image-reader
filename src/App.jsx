@@ -1,13 +1,21 @@
-import  { useState, useMemo } from 'react';
+import { useState, useMemo, lazy, Suspense } from 'react';
 import { ColorModeContext } from './components/contexts/ColorModeContext.js';
 import { LanguageContext } from './components/contexts/LanguageContext.js';
 import { getAppTheme } from './theme.js';
 import SectionContainer from './components/SectionContainer/SectionContainer.jsx';
-import { ThemeProvider, Container, CssBaseline } from '@mui/material';
+import {
+  ThemeProvider,
+  Container,
+  CssBaseline,
+  CircularProgress,
+  Box,
+} from '@mui/material';
 
 import Header from './components/Header/Header.jsx';
-import ReaderImage from './components/ReaderImage/ReaderImage.jsx';
 
+const LazyReaderImage = lazy(() =>
+  import('./components/ReaderImage/ReaderImage.jsx')
+);
 
 function App() {
   const [mode, setMode] = useState(() => {
@@ -47,12 +55,20 @@ function App() {
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-            <SectionContainer py={0} maxWidth="100%" mx="auto">
+          <SectionContainer py={0} maxWidth="100%" mx="auto">
             <Header />
           </SectionContainer>
-            <Container >
-              <ReaderImage />
-            </Container>
+          <Container>
+            <Suspense
+              fallback={
+                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 5 }}>
+                  <CircularProgress />
+                </Box>
+              }
+            >
+              <LazyReaderImage />
+            </Suspense>
+          </Container>
         </ThemeProvider>
       </ColorModeContext.Provider>
     </LanguageContext.Provider>
