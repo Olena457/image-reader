@@ -102,7 +102,7 @@ function ReaderImage() {
   }
 
   return (
-    <Box sx={{  mx: "auto", textAlign: "center", mt: 2 }}>
+    <Box sx={{ mx: 'auto', textAlign: 'center', mt: 2 }}>
       <Typography variant="h4" gutterBottom>
         {t.title}
       </Typography>
@@ -115,17 +115,36 @@ function ReaderImage() {
         onChange={handleUpload}
       />
 
-      <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mb: 2 }}>
-        <Button variant="contained" onClick={triggerUpload}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, mb: 2 }}>
+        <Button
+          variant="contained"
+          sx={{
+            fontSize: { xs: '11px', sm: '0.875rem' },
+          }}
+          onClick={triggerUpload}
+        >
           {t.upload}
         </Button>
         {imageURL && (
-          <Button variant="outlined" onClick={classifyImage}>
+          <Button
+            variant="outlined"
+            sx={{
+              fontSize: { xs: '10px', sm: '0.875rem' },
+            }}
+            onClick={classifyImage}
+          >
             {t.classify}
           </Button>
         )}
         {imageURL && (
-          <Button variant="outlined" color="error" onClick={handleClear}>
+          <Button
+            variant="outlined"
+            sx={{
+              fontSize: { xs: '10px', sm: '0.875rem' },
+            }}
+            color="error"
+            onClick={handleClear}
+          >
             {t.clear}
           </Button>
         )}
@@ -138,7 +157,10 @@ function ReaderImage() {
             alt="Image for classification"
             ref={imageRef}
             crossOrigin="anonymous"
-            style={{ maxWidth: "100%", borderRadius: "8px"}}
+            sx={{
+              fontSize: { xs: '10px', sm: '0.875rem' },
+            }}
+            style={{ maxWidth: '100%', borderRadius: '8px' }}
           />
         </Box>
       )}
@@ -152,10 +174,10 @@ function ReaderImage() {
           {results.map((res, index) => (
             <Box key={res.className} sx={{ mb: 1 }}>
               <Typography variant="body1">
-                <strong>{res.className}</strong> —{" "}
+                <strong>{res.className}</strong> —{' '}
                 {(res.probability * 100).toFixed(2)}%
                 {index === 0 && (
-                  <span style={{ color: "#1976d2" }}> {t.mostLikely}</span>
+                  <span style={{ color: '#1976d2' }}> {t.mostLikely}</span>
                 )}
               </Typography>
             </Box>
@@ -167,3 +189,5 @@ function ReaderImage() {
 }
 
 export default ReaderImage;
+
+ 
