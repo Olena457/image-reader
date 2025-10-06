@@ -1,5 +1,4 @@
 # AI-image classifier
-# AI Photo Interpreter
 
 **AI Photo Interpreter** is a React-based application that analyzes images using a pre-trained machine learning model and provides voice-based feedback for enhanced accessibility and user experience.
 
@@ -20,13 +19,17 @@
 ## Technologies Used
 
 - React (frontend)
-- Pre-trained image captioning model (e.g., BLIP, CLIP, or similar)
-- Text-to-Speech API (browser-native or external)
-- Optional: Netlify Functions for secure API calls
+- Pre-trained image classification model: [`@tensorflow-models/mobilenet`](https://www.npmjs.com/package/@tensorflow-models/mobilenet), developed by Google
+- UI styling powered by [Material UI](https://mui.com/) for a clean and responsive design
+- Interface language switching (Ukrainian and English)
+- Light and dark themes 
+- Text-to-Speech API (Only English)
+- Responsive design optimized for mobile, tablets and desktop devices.
+
 
 ## Purpose
 
-This project aims to provide a fast and accessible way to understand visual content, especially for users with visual impairments or those who prefer audio feedback. It can be adapted for educational tools, accessibility platforms, or smart assistants.
+This project offers a clean and user-friendly interface designed to support accessibility for users with low vision. It includes voice-based feedback. The app is built to provide a fast and intuitive way to interpret visual content, making it suitable for inclusive digital experiences.
 
 
 
