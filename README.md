@@ -2,6 +2,14 @@
 
 **AI Photo Interpreter** is a React-based application that analyzes images using a pre-trained machine learning model and provides voice-based feedback for enhanced accessibility and user experience.
 
+##  Preview
+
+<div  style="text-align: center">
+  <img src="./src/assets/image/upload.jpg" alt="app" width="600"/>
+  <p><em>"Getting started with AI: uploading your image for smart processing"</em></p>
+</div>
+
+
 ## Features
 
 - Image interpretation using a ready-to-use AI model
